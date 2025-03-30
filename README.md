@@ -1,17 +1,21 @@
-# Puppy Camera Store
+# Venta de Cámaras
 
-This is a website for selling cameras, including professional, compact, sports, and security cameras.
+Este es un proyecto de una página web para la venta de cámaras.
 
-## Features
-- Dynamic product catalog
-- Shopping cart functionality
-- Payment simulation
-- WhatsApp contact integration
+## Características
 
-## How to Use
-1. Open the website in your browser.
-2. Browse the catalog and add items to your cart.
-3. Proceed to checkout and simulate payment.
+- Página principal con listado de cámaras.
+- Detalles de cada producto.
+- Contacto para realizar pedidos.
 
-## Deployment
-This website can be hosted on platforms like GitHub Pages or Netlify.
+## Cómo usar
+
+1. Clona este repositorio:
+   ```bash
+   git clone https://github.com/TuUsuario/TuRepositorio.git
+   ```
+2. Abre el archivo `index.html` en tu navegador.
+
+## Licencia
+
+Este proyecto está bajo la licencia MIT.
