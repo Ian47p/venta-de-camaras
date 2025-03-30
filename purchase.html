@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0; /* Remove left margin */
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #444;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #4a90e2;
+        }
+        .item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 15px 0;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .item-details {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .item:last-child {
+            border-bottom: none;
+        }
+        .item p {
+            margin: 0;
+        }
+        .checkout {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .checkout button {
+            background-color: #4a90e2;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .checkout button:hover {
+            background-color: #50e3c2;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px; /* Sidebar starts hidden off-screen */
+            width: 0; /* Collapse the width completely */
+            overflow: hidden; /* Hide content when collapsed */
+            background-color: #4a90e2;
+            color: #fff;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+            transition: left 0.3s ease, width 0.3s ease; /* Smooth transition for both properties */
+        }
+        .sidebar.open {
+            left: 0; /* Sidebar slides in completely */
+            width: 250px; /* Restore full width */
+        }
+        .sidebar h2 {
+            margin-top: 0;
+            font-size: 1.8em;
+            text-align: center;
+            color: #fff;
+            border-bottom: 2px solid #50e3c2;
+            padding-bottom: 10px;
+        }
+        .sidebar a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            margin: 15px 0;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+        .sidebar a:hover {
+            color: #50e3c2;
+        }
+        .menu-toggle {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            background-color: #4a90e2;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.5em;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+        .overlay.active {
+            display: block;
+        }
+        .back-button {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #4a90e2;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .back-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        .delete-button {
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .delete-button:hover {
+            background-color: #cc0000;
+        }
+        .whatsapp-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: #fff;
+            padding: 12px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            z-index: 1000;
+        }
+        .whatsapp-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+        .whatsapp-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: #fff;
+        }
+    </style>
+</head>
+<body>
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar" id="sidebar">
+        <h2>Menú</h2>
+        <a href="index.html">Inicio</a>
+        <a href="profesional-catalog.html">Cámaras Profesionales</a>
+        <a href="compacta-catalog.html">Cámaras Compactas</a>
+        <a href="deportiva-catalog.html">Cámaras Deportivas</a>
+        <a href="seguridad-catalog.html">Cámaras de Seguridad</a>
+        <a href="purchase.html">Carrito de Compras</a>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    <div class="container">
+        <h1>Carrito de Compras</h1>
+        <div id="cart-items">
+            <!-- Items will be dynamically added here -->
+        </div>
+        <div class="checkout">
+            <button onclick="completePurchase()">Realizar Compra</button>
+        </div>
+    </div>
+    <button class="back-button" onclick="goBack()">←</button>
+    <a href="https://wa.me/573169371780" target="_blank" class="whatsapp-icon" title="Contáctanos por WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.105 1.515 5.845L0 24l6.293-1.515A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.935 0-3.73-.5-5.293-1.379l-.37-.215-3.73.898.898-3.73-.215-.37A9.959 9.959 0 0 1 2 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10zm5.285-6.285c-.073-.122-.268-.195-.56-.341-.292-.146-1.73-.853-1.998-.951-.268-.098-.463-.122-.658.122-.195.244-.756.951-.927 1.146-.171.195-.341.22-.634.073-.292-.146-1.232-.451-2.348-1.437-.867-.771-1.451-1.732-1.623-2.024-.171-.293-.018-.451.128-.597.132-.132.293-.341.439-.512.146-.171.195-.244.293-.414.098-.171.049-.317-.024-.463-.073-.146-.658-1.585-.902-2.195-.244-.585-.488-.512-.658-.512-.171 0-.366-.024-.561-.024s-.463.073-.707.341c-.244.268-.927.902-.927 2.195s.951 2.537 1.085 2.707c.134.171 1.866 2.927 4.537 4.098.634.268 1.122.427 1.512.561.634.195 1.22.171 1.683.104.512-.073 1.73-.707 1.976-1.39.244-.683.244-1.268.171-1.39z"/>
+        </svg>
+    </a>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+        function goBack() {
+            window.history.back();
+        }
+
+        // Retrieve cart items from localStorage
+        let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function renderCart() {
+            const cartContainer = document.getElementById('cart-items');
+            cartContainer.innerHTML = ''; // Clear existing items
+
+            cartItems.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'item';
+                itemElement.innerHTML = `
+                    <div class="item-details">
+                        <img src="${item.image}" alt="${item.name}">
+                        <p>${item.name}</p>
+                    </div>
+                    <p>$${item.price}</p>
+                    <button class="delete-button" onclick="removeFromCart(${index})">x</button>
+                `;
+                cartContainer.appendChild(itemElement);
+            });
+        }
+
+        function removeFromCart(index) {
+            cartItems.splice(index, 1); // Remove item from array
+            localStorage.setItem('cart', JSON.stringify(cartItems)); // Update localStorage
+            renderCart(); // Re-render cart
+            updateCartCounter(); // Update cart counter
+        }
+
+        function updateCartCounter() {
+            const cartCounter = document.getElementById('cart-counter');
+            cartCounter.textContent = cartItems.length;
+            cartCounter.style.display = cartItems.length > 0 ? 'inline' : 'none';
+        }
+
+        function completePurchase() {
+            // Redirect to the payment page
+            window.location.href = "payment.html";
+        }
+
+        renderCart();
+        updateCartCounter();
+    </script>
+</body>
+</html>
