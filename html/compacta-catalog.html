@@ -6,10 +6,10 @@
     <title>Catálogo de Cámaras Profesionales</title>
     <link rel="stylesheet" href="../style/catalog.css">
     <script src="../script/catalog.js" defer></script>
+
 </head>
 <body>
     <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
-    <div class="overlay" id="overlay"></div>
     <div class="sidebar" id="sidebar">
         <h2>Menú</h2>
         <a href="index.html">Inicio</a>
@@ -19,6 +19,7 @@
         <a href="seguridad-catalog.html">Cámaras de Seguridad</a>
         <a href="purchase.html">Carrito de Compras</a>
     </div>
+    <div class="overlay" id="overlay"></div>
     <div class="container">
         <h1>Catálogo de Cámaras Profesionales</h1>
         <div class="catalog">
@@ -211,36 +212,6 @@
         <span class="cart-counter" id="cart-counter">0</span>
     </div>
     <button class="back-button" onclick="goBack()">←</button>
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('open');
-        }
-        function goBack() {
-            window.history.back();
-        }
-        let cartCount = 0;
 
-        function addToCart(name, price, image) {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cart.push({ name, price, image });
-            localStorage.setItem('cart', JSON.stringify(cart));
-            updateCartCounter();
-        }
-
-        function updateCartCounter() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const cartCounter = document.getElementById('cart-counter');
-            cartCounter.textContent = cart.length;
-            cartCounter.style.display = 'inline';
-        }
-
-        // Initialize cart counter on page load
-        document.addEventListener('DOMContentLoaded', updateCartCounter);
-
-        function redirectToCart() {
-            window.location.href = "purchase.html"; // Redirect to purchase page
-        }
-    </script>
 </body>
 </html>

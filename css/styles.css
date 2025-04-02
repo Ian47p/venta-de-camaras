@@ -1,16 +1,16 @@
 body {
-    font-family: 'Roboto', sans-serif; /* Modern font */
-    margin: 0; /* Remove left margin */
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
     padding: 0;
-    background-color: #f5f5f5; /* Light gray for a clean look */
-    color: #444; /* Softer dark gray for text */
+    background-color: #f5f5f5;
+    color: #444;
 }
 .banner {
-    background: linear-gradient(90deg, #4a90e2, #50e3c2); /* Modern gradient with blue and green */
+    background: linear-gradient(90deg, #4a90e2, #50e3c2);
     color: #fff;
     text-align: center;
     padding: 40px 20px;
-    border-bottom: 5px solid #50e3c2; /* Accent border */
+    border-bottom: 5px solid #50e3c2;
 }
 .banner h1 {
     font-size: 3.5em;
@@ -26,18 +26,18 @@ body {
     max-width: 100%;
     margin: 20px auto;
     overflow: hidden;
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 .slides img {
     width: 100%;
     height: 400px;
     object-fit: cover;
-    border-radius: 10px; /* Match container */
+    border-radius: 10px;
 }
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
     padding: 20px;
     max-width: 1200px;
@@ -54,7 +54,7 @@ body {
 }
 .gallery a:hover {
     transform: scale(1.05);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Enhanced hover effect */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 .gallery img {
     width: 100%;
@@ -70,7 +70,7 @@ body {
 .economical {
     text-align: center;
     font-size: 1.5em;
-    color: #4a90e2; /* Match banner color */
+    color: #4a90e2;
     margin: 30px 0;
     font-weight: bold;
 }
@@ -78,7 +78,7 @@ body {
     position: fixed;
     top: 20px;
     right: 20px;
-    background-color: #28a745; /* Green color */
+    background-color: #28a745;
     color: #fff;
     padding: 12px 18px;
     border-radius: 50%;
@@ -98,19 +98,19 @@ body {
 .sidebar {
     position: fixed;
     top: 0;
-    left: -250px; /* Sidebar starts hidden off-screen */
-    width: 0; /* Collapse the width completely */
+    left: -250px;
+    width: 0;
     height: 100%;
     background-color: #4a90e2;
     color: #fff;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-    overflow: hidden; /* Hide content when collapsed */
-    transition: left 0.3s ease, width 0.3s ease; /* Smooth transition for both properties */
+    overflow: hidden;
+    transition: left 0.3s ease, width 0.3s ease;
 }
 .sidebar.open {
-    left: 0; /* Sidebar slides in completely */
-    width: 250px; /* Restore full width */
+    left: 0;
+    width: 250px;
 }
 .sidebar h2 {
     margin-top: 0;
@@ -119,7 +119,7 @@ body {
     color: #fff;
     border-bottom: 2px solid #50e3c2;
     padding-bottom: 10px;
-    user-select: text; /* Allow text selection */
+    user-select: text;
 }
 .sidebar a {
     display: block;
@@ -128,7 +128,7 @@ body {
     margin: 15px 0;
     font-size: 1.2em;
     transition: color 0.3s;
-    user-select: text; /* Allow text selection */
+    user-select: text;
 }
 .sidebar a:hover {
     color: #50e3c2;
@@ -221,14 +221,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 50px; /* Make it more circular */
+    border-radius: 50px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     font-size: 1em;
     text-align: center;
     z-index: 1000;
     padding: 10px;
-    /* Add cloud-like shape */
-    background-image: url('cloud-shape.png'); /* Replace with your cloud image */
+    background-image: url('../img/cloud-shape.png');
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -249,7 +248,7 @@ body {
 }
 .curved-arrow path {
     fill: none;
-    stroke: #25d366; /* WhatsApp green */
+    stroke: #25d366;
     stroke-width: 3;
 }
 @keyframes rotate {

@@ -2,10 +2,10 @@ function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('open');
 }
-
 function goBack() {
     window.history.back();
 }
+let cartCount = 0;
 
 function addToCart(name, price, image) {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
